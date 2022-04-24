@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "996752133533",
+    "project_id": "hazir-bce97",
+    "storage_bucket": "hazir-bce97.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:996752133533:android:b5cb9c215ff724abf9b374",
+        "android_client_info": {
+          "package_name": "com.example.hazir"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "996752133533-bfdtg9pj4n0n9j714rprlh5h98e1sa2j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeiIszaPyyeRQRMIvWxPFvX5sqBv_khDc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "996752133533-bfdtg9pj4n0n9j714rprlh5h98e1sa2j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
