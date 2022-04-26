@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:Hazir/scripts/attendancecache.dart';
 import 'package:Hazir/scripts/cloudattendance.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -29,7 +31,7 @@ class Attendance extends ChangeNotifier {
 
   Attendance.fromDataSnapshot(DataSnapshot snapshot) {
     print(snapshot.value);
-    Map<String,dynamic> t = snapshot.value as Map<String, dynamic>;
+    Map t = snapshot.value;
     if (t['coursedata'] != null) {
       coursedata = <Coursedata>[];
       t['coursedata'].forEach((v) {
@@ -38,8 +40,8 @@ class Attendance extends ChangeNotifier {
     }
     id = t['id'];
     username = t['username'].split(',').last.split(' ').last.trim();
-    last_updated=t['last_updated'];
-    password=t['password'];
+    last_updated = t['last_updated'];
+    password = t['password'];
   }
 
   Map<String, dynamic> toJson() {

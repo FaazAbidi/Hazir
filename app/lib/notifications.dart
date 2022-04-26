@@ -14,6 +14,7 @@ class Notifications extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).primaryColor,
         title: Text('Notifications'),
       ),
       body: NotificationList(),
@@ -24,18 +25,12 @@ class Notifications extends StatelessWidget {
 class NotificationList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final changeAttendanceprovider =
-        Provider.of<Attendance>(context, listen: true);
-        
+    final changeAttendanceprovider = Provider.of<Attendance>(context, listen: true);
+
     return new StreamBuilder(
-      stream: FirebaseFirestore.instance
-          .collection('notifications')
-          .doc(changeAttendanceprovider.id)
-          .collection('notifications')
-          .snapshots(),
+      stream: FirebaseFirestore.instance.collection('notifications').doc(changeAttendanceprovider.id).collection('notifications').snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        if (!snapshot.hasData)
-          return Center(child: CircularProgressIndicator());
+        if (!snapshot.hasData) return Center(child: CircularProgressIndicator());
 
         if (snapshot.data.docs.length == 0) {
           return Center(child: Text('You have no notifications'));
@@ -50,11 +45,7 @@ class NotificationList extends StatelessWidget {
                     style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 16,
-                        color: snapshot.data.docs[index]['notification']
-                                    ['title'] ==
-                                'Absent Notification'
-                            ? kPrimaryColor
-                            : kAccentColor),
+                        color: snapshot.data.docs[index]['notification']['title'] == 'Absent Notification' ? kPrimaryColor : kAccentColor),
                   ),
                   subtitle: Text(
                     snapshot.data.docs[index]['notification']['body'],
@@ -62,23 +53,18 @@ class NotificationList extends StatelessWidget {
                   ),
                   onTap: () {
                     for (var course in changeAttendanceprovider.coursedata) {
-                      if (course.coursename ==
-                          snapshot.data.docs[index]['data']
-                              ['coursename']) {
+                      if (course.coursename == snapshot.data.docs[index]['data']['coursename']) {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) => CoursePage(
                                       coursedata: course,
-                                      highlightedDate: snapshot.data
-                                          .docs[index]['data']['date'],
+                                      highlightedDate: snapshot.data.docs[index]['data']['date'],
                                     )));
                       }
                     }
                   },
-                  leading: snapshot.data.docs[index]['notification']
-                              ['title'] ==
-                          'Absent Notification'
+                  leading: snapshot.data.docs[index]['notification']['title'] == 'Absent Notification'
                       ? Icon(
                           Icons.notification_important,
                           color: kPrimaryColor,

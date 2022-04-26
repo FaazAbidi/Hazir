@@ -9,11 +9,8 @@ void main() async {
   //ensure flutter is initialized
   WidgetsFlutterBinding.ensureInitialized();
 
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-
-    statusBarBrightness: Brightness.light,
-    statusBarColor: kPrimaryColor// status bar color
-  ));
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarBrightness: Brightness.light, statusBarColor: kPrimaryColor // status bar color
+      ));
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -27,4 +24,3 @@ class MyApp extends StatelessWidget {
     return SplashScreen();
   }
 }
-

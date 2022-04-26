@@ -14,19 +14,11 @@ exports.getData = functions.https.onRequest(async (request, response) => {
 
     const huid = request.query.huid;
     const pass = request.query.pass;
-    const url = `https://hazirapi.herokuapp.com/login`
+    const url = `https://hazirapi.herokuapp.com/login?id=${huid}&pwd=${pass}`;
 
     try {
-        fetch(url,
-            {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({hid: huid, pwd: pass})
-            }
-        )
+        console.log("Starting to fetch data...");
+        fetch(url)
             .then(apiData => apiData.json())
             .then(apiData => {
                 console.log("Got DATA!")
