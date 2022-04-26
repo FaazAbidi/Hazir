@@ -31,7 +31,7 @@ class CloudAttendance {
   }
 
   Future<Map<String, dynamic>> login() async {
-    String url = 'https://us-central1-hazir-9a2c2.cloudfunctions.net/login?huid=$id&pass=$pass&token=$token';
+    String url = 'https://us-central1-hazir-bce97.cloudfunctions.net/login?huid=$id&pass=$pass&token=$token';
     print(url);
     Map<String, dynamic> JSONresponse = await _getJSONData(url);
     String status = JSONresponse['status'];
@@ -43,7 +43,7 @@ class CloudAttendance {
   }
 
   Future<Map<String, dynamic>> updatePass() async {
-    String url = 'https://us-central1-hazir-9a2c2.cloudfunctions.net/changePass?huid=$id&pass=$pass';
+    String url = 'https://us-central1-hazir-bce97.cloudfunctions.net/changePass?huid=$id&pass=$pass';
     print(url);
     Map<String, dynamic> JSONresponse = await _getJSONData(url);
     String status = JSONresponse['status'];
@@ -55,7 +55,7 @@ class CloudAttendance {
   }
 
   Future<bool> updateUserDataOnCloud() async {
-    String url = 'https://us-central1-hazir-9a2c2.cloudfunctions.net/getData?huid=$id&pass=$pass';
+    String url = 'https://us-central1-hazir-bce97.cloudfunctions.net/getData?huid=$id&pass=$pass';
     print(url);
     Map<String, dynamic> JSONresponse = await _getJSONData(url);
     String status = JSONresponse['status'];

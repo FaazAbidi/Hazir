@@ -14,12 +14,22 @@ exports.getData = functions.https.onRequest(async (request, response) => {
 
     const huid = request.query.huid;
     const pass = request.query.pass;
-    const url = `https://hazirapi.herokuapp.com/login?id=${huid}&pwd=${pass}`
+    const url = `https://hazirapi.herokuapp.com/login`
 
     try {
-        fetch(url)
+        fetch(url,
+            {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({hid: huid, pwd: pass})
+            }
+        )
             .then(apiData => apiData.json())
             .then(apiData => {
+                console.log("Got DATA!")
                 var newUserReq = admin.database().ref('/users')
                 newUserReq.child(huid).set(apiData)
                 var normalDate = new Date(0); // The 0 there is the key, which sets the date to the epoch
